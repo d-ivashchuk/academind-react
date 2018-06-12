@@ -4,3 +4,10 @@
   background-color: #10aded;
   padding: 10px;
 }
+
+.red {
+  color: #C55
+}
+.bold{
+  font-weight: bold;
+}
