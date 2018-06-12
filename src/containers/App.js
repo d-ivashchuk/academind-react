@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
     persons: [
-      { id: 'asfd', name: 'Max', age: 29 },
-      { id: 'fras', name: 'Manu', age: 29 },
+      { id: 'asfd', name: 'Dimiti', age: 22 },
+      { id: 'fras', name: 'Max', age: 29 },
       { id: 'assd', name: 'Stephanie', age: 26 }
     ],
     showPersons: false
@@ -48,48 +49,30 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer',
       ':hover':{
-        backgroundColor:'lightgreen',
-        color:'black'
+      backgroundColor:'lightgreen',
+      color:'black'
 
       }
     };
     let persons = null;
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                key={person.id}
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                changed={event => this.nameChangedHandler(event, person.id)}
-              />
-            );
-          })}
-        </div>
-      );
+      persons = <Persons persons ={this.state.persons}
+                  clicked={this.deletePersonHandler}
+                  changed={this.nameChangedHandler}/>
+
+
       style.backgroundColor = '#FA113D'
 
     }
 
-    const classes = []
-    if(this.state.persons.length<=2){
-      classes.push('red')
-    }
-    if(this.state.persons.length<=1){
-      classes.push('bold')
-    }
 
 
     return (
       <div className="App">
-        <h1>Hello React developers!</h1>
-        <p className={classes.join(' ')}>It's ALIVE!!!</p>
-        <button style={style} onClick={this.togglePersonsHandler}>
-          Show Persons
-        </button>
+        <Cockpit
+          style={this.style}
+          changed={this.togglePersonsHandler}
+          />
         {persons}
       </div>
     );
