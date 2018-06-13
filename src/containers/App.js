@@ -4,14 +4,16 @@ import Person from '../components/Persons/Person/Person';
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
 
+
 class App extends Component {
   state = {
     persons: [
-      { id: 'asfd', name: 'Dimiti', age: 22 },
+      { id: 'asfd', name: 'Dimitri', age: 22 },
       { id: 'fras', name: 'Max', age: 29 },
       { id: 'assd', name: 'Stephanie', age: 26 }
     ],
-    showPersons: false
+    showPersons: false,
+    toggleClicked:0
   };
   deletePersonHandler = personIndex => {
     const persons = [...this.state.persons];
@@ -35,8 +37,12 @@ class App extends Component {
   };
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({
-      showPersons: !doesShow
+    this.setState((prevState,props)=>{
+      return {
+
+        showPersons: !doesShow,
+        toggleClicked:prevState.toggleClicked+1
+      }
     });
   };
 
@@ -78,5 +84,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

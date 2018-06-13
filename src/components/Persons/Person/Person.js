@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-
+import PropTypes from 'prop-types'
 
 const Person = styled.div`
 color:grey;
@@ -28,5 +28,13 @@ const person = props => {
     </Person>
   );
 };
+
+person.propTypes ={
+  click:PropTypes.func,
+  name:PropTypes.string,
+  age:PropTypes.number,
+  changed:PropTypes.func
+
+}
 
 export default person;
