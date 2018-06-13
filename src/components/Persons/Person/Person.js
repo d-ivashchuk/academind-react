@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const Person = styled.div`
+const Persona = styled.div`
 color:grey;
 width: 60%;
 margin: 16px auto 16px;
@@ -17,19 +17,31 @@ border-radius:5px;
 color:#ccc;
 font-size:0.7em;
 `
-const person = props => {
+class Person extends React.Component{
 
-  return (
-    <Person>
-      <p onClick={props.click}>
-        I am {props.name} and I am {props.age} years old
-      </p>
-      <Input type="text" onChange={props.changed} value={props.name} />
-    </Person>
-  );
-};
+componentDidMount(){
 
-person.propTypes ={
+  this.inputElement.focus();
+}
+  render(){
+    return (
+      <Persona>
+        <p onClick={this.props.click}>
+          I am {this.props.name} and I am {this.props.age} years old
+        </p>
+        <Input
+          innerRef={(inp)=>{this.inputElement=inp}}
+          type="text"
+          onChange={this.props.changed}
+          value={this.props.name} />
+      </Persona>
+    );
+  }
+}
+
+
+
+Person.propTypes ={
   click:PropTypes.func,
   name:PropTypes.string,
   age:PropTypes.number,
@@ -37,4 +49,4 @@ person.propTypes ={
 
 }
 
-export default person;
+export default Person;
