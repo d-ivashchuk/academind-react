@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 
 const Button = styled.button`
+margin:15px;
 padding:5px;
 background-color:#BADA55;
 border-radius:5px;
@@ -24,9 +25,14 @@ const cockpit = (props)=>{
 <Cockpit>
   <h1>Hello React developers!</h1>
   <p>It's ALIVE!!!</p>
-  <Button style={props.style} onClick={props.changed}>
+  <Button
+    onClick={props.changed}
+    >
     Show People
   </Button>
+  <Button
+    onClick={props.login}
+    > Log in</Button>
 </Cockpit>
 
   )

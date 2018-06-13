@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import {AuthContext} from '../../../containers/App'
 
 const Persona = styled.div`
 color:grey;
@@ -20,12 +21,18 @@ font-size:0.7em;
 class Person extends React.Component{
 
 componentDidMount(){
+if(this.props.position===0){
 
   this.inputElement.focus();
+
+}
 }
   render(){
     return (
       <Persona>
+        <AuthContext.Consumer>
+          {auth => auth ?<p>I'm authenticated</p>:null}
+        </AuthContext.Consumer>
         <p onClick={this.props.click}>
           I am {this.props.name} and I am {this.props.age} years old
         </p>

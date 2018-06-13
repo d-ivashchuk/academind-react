@@ -4,6 +4,9 @@ import Person from '../components/Persons/Person/Person';
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
 
+export const AuthContext = React.createContext(false)
+
+
 
 class App extends Component {
   state = {
@@ -13,7 +16,8 @@ class App extends Component {
       { id: 'assd', name: 'Stephanie', age: 26 }
     ],
     showPersons: false,
-    toggleClicked:0
+    toggleClicked:0,
+    authenticated:false
   };
   deletePersonHandler = personIndex => {
     const persons = [...this.state.persons];
@@ -45,6 +49,11 @@ class App extends Component {
       }
     });
   };
+  loginHandler = ()=>{
+    this.setState({authenticated:!this.state.authenticated})
+  }
+
+
 
   render() {
     const style = {
@@ -62,7 +71,8 @@ class App extends Component {
     };
     let persons = null;
     if (this.state.showPersons) {
-      persons = <Persons persons ={this.state.persons}
+      persons = <Persons
+                  persons ={this.state.persons}
                   clicked={this.deletePersonHandler}
                   changed={this.nameChangedHandler}/>
 
@@ -76,10 +86,13 @@ class App extends Component {
     return (
       <div className="App">
         <Cockpit
+          login ={this.loginHandler}
           style={this.style}
           changed={this.togglePersonsHandler}
           />
+        <AuthContext.Provider value ={this.state.authenticated}>
         {persons}
+        </AuthContext.Provider>
       </div>
     );
   }
